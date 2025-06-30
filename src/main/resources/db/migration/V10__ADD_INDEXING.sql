@@ -26,6 +26,6 @@ CREATE INDEX idx_tags_label ON tags(label);
 CREATE INDEX idx_categories_name ON categories(label);
 CREATE INDEX idx_currencies_code ON currencies(code);
 
--- Small Correction: Add profile_picture to users table
+-- Small Correction: Add profile_picture to user table
 ALTER TABLE users
     ADD COLUMN IF NOT EXISTS profile_picture varchar(256);

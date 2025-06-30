@@ -1,6 +1,6 @@
 SET search_path TO public;
 
--- Joint table for accounts and users
+-- Joint table for account and user
 CREATE TABLE accounts_users
 (
     account_id uuid NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE accounts_users
     CONSTRAINT fk_accounts_users_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Joint table for saving goals and users
+-- Joint table for saving goals and user
 CREATE TABLE saving_goals_users
 (
     saving_goal_id uuid NOT NULL,

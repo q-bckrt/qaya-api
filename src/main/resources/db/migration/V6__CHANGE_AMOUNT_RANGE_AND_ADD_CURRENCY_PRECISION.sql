@@ -12,6 +12,6 @@ ALTER TABLE saving_goals
     ALTER COLUMN current_amount TYPE NUMERIC(38,8),
     ALTER COLUMN suggested_amount TYPE NUMERIC(38,8);
 
--- 2. Add precision column to currencies table (default to 2 for fiat currencies)
+-- 2. Add precision column to currency table (default to 2 for fiat currency)
 ALTER TABLE currencies
     ADD COLUMN IF NOT EXISTS precision INTEGER NOT NULL DEFAULT 2;
