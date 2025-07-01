@@ -82,4 +82,12 @@ public class User {
         this.profilePictureUrl = profilePictureUrl;
         this.isDeleted = isDeleted;
     }
+
+    // METHODS
+    public void addAccount(Account account) {
+        if (account != null && !this.accounts.contains(account)) {
+            this.accounts.add(account);
+            account.getUsers().add(this);
+        }
+    }
 }

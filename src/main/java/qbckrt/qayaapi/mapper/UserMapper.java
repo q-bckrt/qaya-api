@@ -30,7 +30,8 @@ public class UserMapper {
                 ? ZoneId.of(userInputDTO.getTimezone())
                 : ZoneId.systemDefault();
 
-        Currency currency = currencyRepository.findById(userInputDTO.getCurrency()).orElseThrow(); // ???
+        Currency currency = currencyRepository.findById(userInputDTO.getCurrency())
+                .orElseThrow(); // ???
 
         return new User(
                 userInputDTO.getDisplayName(),

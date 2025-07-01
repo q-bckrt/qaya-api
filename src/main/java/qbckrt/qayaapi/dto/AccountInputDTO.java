@@ -10,16 +10,18 @@ public class AccountInputDTO {
     // FIELDS
     private String title;
     private String description;
-    private String currencyCode;
+    private String currency;
     private boolean allowOverdraft;
     private String iconKey;
+    private String userId;
 
     // CONSTRUCTOR
-    public AccountInputDTO(String title, String description, String currencyCode, boolean allowOverdraft, String iconKey) {
+    public AccountInputDTO(String title, String description, String currency, boolean allowOverdraft, String iconKey, String userId) {
         this.title = title;
         this.description = description;
-        this.currencyCode = currencyCode;
+        this.currency = currency;
         this.allowOverdraft = allowOverdraft;
         this.iconKey = iconKey;
+        this.userId = userId;
     }
 }
