@@ -2,8 +2,10 @@ package qbckrt.qayaapi.mapper;
 
 import org.springframework.stereotype.Component;
 import qbckrt.qayaapi.dto.UserInputDTO;
+import qbckrt.qayaapi.dto.UserOutputDTO;
 import qbckrt.qayaapi.entity.Currency;
 import qbckrt.qayaapi.entity.User;
+import qbckrt.qayaapi.repository.CurrencyRepository;
 
 import java.time.ZoneId;
 import java.util.Locale;
@@ -11,6 +13,15 @@ import java.util.Locale;
 @Component
 public class UserMapper {
 
+    // FIELDS
+    CurrencyRepository currencyRepository;
+
+    // CONSTRUCTOR
+    public UserMapper(CurrencyRepository currencyRepository) {
+        this.currencyRepository = currencyRepository;
+    }
+
+    // METHODS
     public User toEntity (UserInputDTO userInputDTO) {
         Locale userLocale = userInputDTO.getLocale() != null
                 ? Locale.forLanguageTag(userInputDTO.getLocale())
@@ -19,9 +30,9 @@ public class UserMapper {
                 ? ZoneId.of(userInputDTO.getTimezone())
                 : ZoneId.systemDefault();
 
-        Currency currency = new Currency();
+        Currency currency = currencyRepository.findById(userInputDTO.getCurrency()).orElseThrow(); // ???
 
-        User user = new User(
+        return new User(
                 userInputDTO.getDisplayName(),
                 userInputDTO.getEmail(),
                 userLocale,
@@ -31,7 +42,20 @@ public class UserMapper {
                 userInputDTO.getProfilePictureUrl(),
                 false
         );
-
-        return user;
     }
+
+    public UserOutputDTO toDTO(User user) {
+        return new UserOutputDTO(
+                user.getId().toString(),
+                user.getDisplayName(),
+                user.getEmail(),
+                user.getLocale().toLanguageTag(),
+                user.getTimeZone().getId(),
+                user.getCountryCode(),
+                user.getCurrency().getCode(),
+                user.getProfilePictureUrl(),
+                user.getCreatedAt().toString()
+        );
+    }
+
 }
