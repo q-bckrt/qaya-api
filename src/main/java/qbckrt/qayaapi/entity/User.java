@@ -59,7 +59,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "account_id")
     )
     private List<Account> accounts = new ArrayList<>();
-
+    /*
     @ManyToMany
     @JoinTable(
             name = "saving_goals_users",
@@ -67,7 +67,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "saving_goal_id")
     )
     private List<SavingGoal> savingGoals = new ArrayList<>();
-
+    */
     // CONSTRUCTORS
     public User() {}
     public User(String displayName, String email, Locale locale, ZoneId timeZone, String countryCode,
