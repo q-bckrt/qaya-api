@@ -1,4 +1,4 @@
-SET search_path TO public
+SET search_path TO public;
 
 ALTER TABLE users
     ALTER COLUMN country_code DROP NOT NULL,
