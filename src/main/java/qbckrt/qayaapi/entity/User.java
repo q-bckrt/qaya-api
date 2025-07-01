@@ -31,7 +31,7 @@ public class User {
     private boolean isDeleted;
 
     // CONSTRUCTORS
-    public User() {/* Default constructor for JPA};*/}
+    public User() {}
     public User(String displayName, String email, Locale locale, ZoneId timeZone, String countryCode,
                 String currencyCode, String profilePictureUrl, LocalDateTime createdAt, LocalDateTime updatedAt,
                 boolean isDeleted) {
