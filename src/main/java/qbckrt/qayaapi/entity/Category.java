@@ -45,13 +45,14 @@ public class Category {
 
     // CONSTRUCTORS
     public Category(){}
-    public Category(String label, String description, TransactionType transactionType, String iconKey) {
+    public Category(String label, String description, TransactionType transactionType, String iconKey, User user) {
         this.id = UUID.randomUUID();
 
         this.label = label;
         this.description = description;
         this.type = transactionType;
         this.iconKey = iconKey;
+        this.userId = user;
 
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();

@@ -1,5 +1,10 @@
 package qbckrt.qayaapi.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CategoryOutputDTO {
 
     // FIELDS
