@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import qbckrt.qayaapi.dto.CategoryInputDTO;
 import qbckrt.qayaapi.dto.CategoryOutputDTO;
 import qbckrt.qayaapi.entity.Category;
+import qbckrt.qayaapi.enums.CategoryType;
 import qbckrt.qayaapi.enums.TransactionType;
 import qbckrt.qayaapi.repository.UserRepository;
 
@@ -27,7 +28,7 @@ public class CategoryMapper {
         return new Category(
                 categoryInputDTO.getLabel(),
                 categoryInputDTO.getDescription(),
-                TransactionType.valueOf(categoryInputDTO.getType()),
+                CategoryType.valueOf(categoryInputDTO.getType()),
                 categoryInputDTO.getIconKey(),
                 userRepository.findById(userIdAsUUID)
                         .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + categoryInputDTO.getUserId()))

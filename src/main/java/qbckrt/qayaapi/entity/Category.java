@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import qbckrt.qayaapi.enums.CategoryType;
 import qbckrt.qayaapi.enums.TransactionType;
 
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class Category {
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private TransactionType type;
+    private CategoryType type;
     @Column(name = "icon_key", nullable = false)
     private String iconKey;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,7 +46,7 @@ public class Category {
 
     // CONSTRUCTORS
     public Category(){}
-    public Category(String label, String description, TransactionType transactionType, String iconKey, User user) {
+    public Category(String label, String description, CategoryType transactionType, String iconKey, User user) {
         this.id = UUID.randomUUID();
 
         this.label = label;
