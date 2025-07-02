@@ -45,7 +45,8 @@ public class AccountMapper {
                 account.getDescription(),
                 account.getCurrency().getCode(),
                 account.isAllowOverdraft(),
-                account.getIconKey()
+                account.getIconKey(),
+                account.getCreatedAt().toString()
         );
     }
 }

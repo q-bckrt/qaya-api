@@ -12,7 +12,6 @@ public class Currency {
 
     // FIELDS
     @Id
-    @Column(name = "code", nullable = false, unique = true)
     private String code; // ISO 4217 currency code, e.g., "USD", "EUR"
     @Column(name = "symbol", nullable = false, unique = true)
     private String symbol; // Currency symbol, e.g., "$", "€"

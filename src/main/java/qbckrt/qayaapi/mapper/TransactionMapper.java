@@ -76,7 +76,8 @@ public class TransactionMapper {
                 transaction.getUser().getId().toString(),
                 transaction.getAmount().toString(),
                 transaction.getDate().toString(),
-                transaction.getAccount().getId().toString()
+                transaction.getAccount().getId().toString(),
+                transaction.getCreatedAt().toString()
         );
     }
 }

@@ -17,6 +17,7 @@ public class TransactionOutputDTO {
     private String amount;
     private String date;
     private String accountId;
+    private String createdAt;
 
     // CONSTRUCTORS
     public TransactionOutputDTO(
@@ -28,7 +29,8 @@ public class TransactionOutputDTO {
             String userId,
             String amount,
             String date,
-            String accountId
+            String accountId,
+            String createdAt
     ) {
         this.id = id;
         this.title = title;
@@ -39,5 +41,6 @@ public class TransactionOutputDTO {
         this.amount = amount;
         this.date = date;
         this.accountId = accountId;
+        this.createdAt = createdAt;
     }
 }

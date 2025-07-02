@@ -14,14 +14,16 @@ public class AccountOutputDTO {
     private String currencyCode;
     private boolean allowOverdraft;
     private String iconKey;
+    private String createdAt;
 
     // CONSTRUCTOR
-    public AccountOutputDTO(String id, String title, String description, String currencyCode, boolean allowOverdraft, String iconKey) {
+    public AccountOutputDTO(String id, String title, String description, String currencyCode, boolean allowOverdraft, String iconKey, String createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.currencyCode = currencyCode;
         this.allowOverdraft = allowOverdraft;
         this.iconKey = iconKey;
+        this.createdAt = createdAt;
     }
 }
