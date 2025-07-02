@@ -1,6 +1,5 @@
 package qbckrt.qayaapi.mapper;
 
-import jakarta.persistence.Column;
 import org.springframework.stereotype.Component;
 import qbckrt.qayaapi.dto.TransactionInputDTO;
 import qbckrt.qayaapi.dto.TransactionOutputDTO;
