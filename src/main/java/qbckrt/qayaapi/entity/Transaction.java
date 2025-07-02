@@ -33,16 +33,18 @@ public class Transaction {
     private LocalDate date;
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private TransactionType type; // Enum for transaction type (e.g., INCOME, EXPENSE)
+    private TransactionType type;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+    /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "savings_goal_id")
     private SavingGoal savingsGoal;
+    */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -56,7 +58,8 @@ public class Transaction {
 
     // CONSTRUCTORS
     public Transaction(){}
-    public Transaction(String title, String description, BigDecimal amount, LocalDate date, TransactionType type) {
+    public Transaction(String title, String description, BigDecimal amount, LocalDate date, TransactionType type,
+                       Account account, Category category, User user) {
         this.id = UUID.randomUUID();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -67,8 +70,8 @@ public class Transaction {
         this.amount = amount;
         this.date = date;
         this.type = type;
-        this.account = null; // Will be set later
-        this.category = null; // Will be set later
-        this.savingsGoal = null; // Will be set later
+        this.account = account;
+        this.category = category;
+        this.user = user;
     }
 }
