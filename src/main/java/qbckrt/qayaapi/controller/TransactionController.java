@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TransactionController {
 
     // FIELDS

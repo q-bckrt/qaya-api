@@ -12,11 +12,12 @@ public class TransactionOutputDTO {
     private String title;
     private String description;
     private String type;
-    private String categoryId;
+    private CategoryOutputDTO category;
     private String userId;
     private String amount;
     private String date;
-    private String accountId;
+    private AccountOutputDTO account;
+    private CurrencyOutputDTO currency;
     private String createdAt;
 
     // CONSTRUCTORS
@@ -25,22 +26,24 @@ public class TransactionOutputDTO {
             String title,
             String description,
             String type,
-            String categoryId,
+            CategoryOutputDTO category,
             String userId,
             String amount,
             String date,
-            String accountId,
+            AccountOutputDTO account,
+            CurrencyOutputDTO currency,
             String createdAt
     ) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.type = type;
-        this.categoryId = categoryId;
+        this.category = category;
         this.userId = userId;
         this.amount = amount;
         this.date = date;
-        this.accountId = accountId;
+        this.account = account;
+        this.currency = currency;
         this.createdAt = createdAt;
     }
 }

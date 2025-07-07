@@ -17,11 +17,13 @@ public class AccountMapper {
     private final UserRepository userRepository;
     // FIELDS
     CurrencyRepository currencyRepository;
+    CurrencyMapper currencyMapper;
 
     // CONSTRUCTOR
-    public AccountMapper(CurrencyRepository currencyRepository, UserRepository userRepository) {
+    public AccountMapper(CurrencyRepository currencyRepository, UserRepository userRepository, CurrencyMapper currencyMapper) {
         this.currencyRepository = currencyRepository;
         this.userRepository = userRepository;
+        this.currencyMapper = currencyMapper;
     }
 
     // METHODS
@@ -43,7 +45,7 @@ public class AccountMapper {
                 account.getId().toString(),
                 account.getTitle(),
                 account.getDescription(),
-                account.getCurrency().getCode(),
+                currencyMapper.toDTO(account.getCurrency()),
                 account.isAllowOverdraft(),
                 account.getIconKey(),
                 account.getCreatedAt().toString()

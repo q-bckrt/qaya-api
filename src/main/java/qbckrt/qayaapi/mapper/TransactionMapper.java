@@ -10,6 +10,7 @@ import qbckrt.qayaapi.entity.User;
 import qbckrt.qayaapi.enums.TransactionType;
 import qbckrt.qayaapi.repository.AccountRepository;
 import qbckrt.qayaapi.repository.CategoryRepository;
+import qbckrt.qayaapi.repository.CurrencyRepository;
 import qbckrt.qayaapi.repository.UserRepository;
 
 import java.math.BigDecimal;
@@ -23,14 +24,25 @@ public class TransactionMapper {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
     private final AccountRepository accountRepository;
+    private final CurrencyMapper currencyMapper;
+    private final AccountMapper accountMapper;
+    private final CategoryMapper categoryMapper;
 
     // CONSTRUCTOR
-    public TransactionMapper(UserRepository userRepository,
-                             CategoryRepository categoryRepository,
-                             AccountRepository accountRepository) {
+    public TransactionMapper(
+            UserRepository userRepository,
+            CategoryRepository categoryRepository,
+            AccountRepository accountRepository,
+            CurrencyMapper currencyMapper,
+            AccountMapper accountMapper,
+            CategoryMapper categoryMapper
+    ) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.accountRepository = accountRepository;
+        this.currencyMapper = currencyMapper;
+        this.accountMapper = accountMapper;
+        this.categoryMapper = categoryMapper;
     }
 
     // METHODS
@@ -72,11 +84,12 @@ public class TransactionMapper {
                 transaction.getTitle(),
                 transaction.getDescription(),
                 transaction.getType().name(),
-                transaction.getCategory().getId().toString(),
+                categoryMapper.toDTO(transaction.getCategory()),
                 transaction.getUser().getId().toString(),
                 transaction.getAmount().toString(),
                 transaction.getDate().toString(),
-                transaction.getAccount().getId().toString(),
+                accountMapper.toDTO(transaction.getAccount()),
+                currencyMapper.toDTO(transaction.getAccount().getCurrency()),
                 transaction.getCreatedAt().toString()
         );
     }

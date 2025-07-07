@@ -11,17 +11,17 @@ public class AccountOutputDTO {
     private String id;
     private String title;
     private String description;
-    private String currencyCode;
+    private CurrencyOutputDTO currency;
     private boolean allowOverdraft;
     private String iconKey;
     private String createdAt;
 
     // CONSTRUCTOR
-    public AccountOutputDTO(String id, String title, String description, String currencyCode, boolean allowOverdraft, String iconKey, String createdAt) {
+    public AccountOutputDTO(String id, String title, String description, CurrencyOutputDTO currency, boolean allowOverdraft, String iconKey, String createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.currencyCode = currencyCode;
+        this.currency = currency;
         this.allowOverdraft = allowOverdraft;
         this.iconKey = iconKey;
         this.createdAt = createdAt;
