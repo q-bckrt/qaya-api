@@ -12,7 +12,7 @@ import java.util.UUID;
 @Component
 public class TagMapper {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     // CONSTRUCTOR
     public TagMapper(UserRepository userRepository) {

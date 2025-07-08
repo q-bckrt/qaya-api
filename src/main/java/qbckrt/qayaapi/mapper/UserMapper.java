@@ -14,7 +14,7 @@ import java.util.Locale;
 public class UserMapper {
 
     // FIELDS
-    CurrencyRepository currencyRepository;
+    private final CurrencyRepository currencyRepository;
 
     // CONSTRUCTOR
     public UserMapper(CurrencyRepository currencyRepository) {

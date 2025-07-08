@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
 
     // FIELDS
@@ -23,7 +24,7 @@ public class CategoryController {
     // METHODS
     @GetMapping(path = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryOutputDTO getCategoryById(String id) {
+    public CategoryOutputDTO getCategoryById(@PathVariable("id") String id) {
         return categoryService.getCategoryById(id);
     }
 

@@ -14,15 +14,13 @@ import java.util.UUID;
 @Component
 public class AccountMapper {
 
-    private final UserRepository userRepository;
     // FIELDS
-    CurrencyRepository currencyRepository;
-    CurrencyMapper currencyMapper;
+    private final CurrencyRepository currencyRepository;
+    private final CurrencyMapper currencyMapper;
 
     // CONSTRUCTOR
-    public AccountMapper(CurrencyRepository currencyRepository, UserRepository userRepository, CurrencyMapper currencyMapper) {
+    public AccountMapper(CurrencyRepository currencyRepository, CurrencyMapper currencyMapper) {
         this.currencyRepository = currencyRepository;
-        this.userRepository = userRepository;
         this.currencyMapper = currencyMapper;
     }
 

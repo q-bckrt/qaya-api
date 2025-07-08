@@ -13,7 +13,7 @@ import java.util.List;
 public class TagController {
 
     // FIELDS
-    private TagService tagService;
+    private final TagService tagService;
 
     // CONSTRUCTOR
     public TagController(TagService tagService) {

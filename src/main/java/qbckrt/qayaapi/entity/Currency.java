@@ -1,8 +1,13 @@
 package qbckrt.qayaapi.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Entity
 @Getter
@@ -12,26 +17,18 @@ public class Currency {
 
     // FIELDS
     @Id
-    private String code; // ISO 4217 currency code, e.g., "USD", "EUR"
+    private String code;
     @Column(name = "symbol", nullable = false, unique = true)
-    private String symbol; // Currency symbol, e.g., "$", "€"
+    private String symbol;
     @Column(name = "currency_name", nullable = false, unique = true)
-    private String name; // Full name of the currency, e.g., "United States Dollar", "Euro"
+    private String name;
     @Column(name = "precision", nullable = false)
-    private Integer precision; // Number of decimal places for the currency
+    private Integer precision;
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     public Currency() {
         // Default constructor for JPA
-    }
-
-    public Currency(String code, String symbol, String name, Integer precision, boolean isDeleted) {
-        this.code = code;
-        this.symbol = symbol;
-        this.name = name;
-        this.precision = precision;
-        this.isDeleted = isDeleted;
     }
 }
