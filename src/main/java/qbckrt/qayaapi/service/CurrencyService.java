@@ -1,16 +1,19 @@
 package qbckrt.qayaapi.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 import qbckrt.qayaapi.dto.CurrencyOutputDTO;
+import qbckrt.qayaapi.entity.Currency;
 import qbckrt.qayaapi.mapper.CurrencyMapper;
 import qbckrt.qayaapi.repository.CurrencyRepository;
 
-import java.util.List;
 
 @Service
 public class CurrencyService {
 
-    // FIELDS
+    // DEPENDENCIES
     private final CurrencyMapper currencyMapper;
     private final CurrencyRepository currencyRepository;
 
@@ -22,9 +25,10 @@ public class CurrencyService {
 
     // METHODS
     public CurrencyOutputDTO getCurrencyByCode(String code) {
-        return currencyRepository.findByCode(code)
-                .map(currencyMapper::toDTO)
+        Currency currency = currencyRepository.findByCode(code)
                 .orElseThrow(() -> new RuntimeException("Currency not found with code: " + code));
+
+        return currencyMapper.toDTO(currency);
     }
 
     public List<CurrencyOutputDTO> getCurrencies() {

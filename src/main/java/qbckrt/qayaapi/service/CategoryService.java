@@ -1,19 +1,21 @@
 package qbckrt.qayaapi.service;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
+
 import qbckrt.qayaapi.dto.CategoryInputDTO;
 import qbckrt.qayaapi.dto.CategoryOutputDTO;
 import qbckrt.qayaapi.entity.Category;
 import qbckrt.qayaapi.mapper.CategoryMapper;
 import qbckrt.qayaapi.repository.CategoryRepository;
 
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class CategoryService {
 
-    // FIELDS
+    // DEPENDENCIES
     private final CategoryMapper categoryMapper;
     private final CategoryRepository categoryRepository;
 
@@ -27,9 +29,10 @@ public class CategoryService {
     public CategoryOutputDTO getCategoryById(String id) {
         UUID idAsUUID = UUID.fromString(id);
 
-        return categoryRepository.findById(idAsUUID)
-                .map(categoryMapper::toDTO)
+        Category category = categoryRepository.findById(idAsUUID)
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+
+        return categoryMapper.toDTO(category);
     }
 
     public List<CategoryOutputDTO> getAllCategories() {
@@ -41,6 +44,7 @@ public class CategoryService {
     public CategoryOutputDTO createCategory(CategoryInputDTO categoryInputDTO) {
         Category categoryEntity = categoryMapper.toEntity(categoryInputDTO);
         Category savedCategory = categoryRepository.save(categoryEntity);
+
         return categoryMapper.toDTO(savedCategory);
     }
 }

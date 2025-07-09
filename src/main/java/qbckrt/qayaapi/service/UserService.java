@@ -1,20 +1,21 @@
 package qbckrt.qayaapi.service;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
+
 import qbckrt.qayaapi.dto.UserInputDTO;
 import qbckrt.qayaapi.dto.UserOutputDTO;
 import qbckrt.qayaapi.entity.User;
 import qbckrt.qayaapi.mapper.UserMapper;
 import qbckrt.qayaapi.repository.UserRepository;
 
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserService {
 
-    // FIELDS
+    // DEPENDENCIES
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -28,9 +29,10 @@ public class UserService {
     public UserOutputDTO getUserById(String userId) {
         UUID userIdAsUUID = UUID.fromString(userId);
 
-        return userRepository.findById(userIdAsUUID)
-                .map(userMapper::toDTO)
+        User user = userRepository.findById(userIdAsUUID)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        return userMapper.toDTO(user);
     }
 
     public List<UserOutputDTO> getAllUsers() {
@@ -42,6 +44,7 @@ public class UserService {
     public UserOutputDTO createUser(UserInputDTO userInputDTO) {
         User userEntity = userMapper.toEntity(userInputDTO);
         User savedUser = userRepository.save(userEntity);
+
         return userMapper.toDTO(savedUser);
     }
 }

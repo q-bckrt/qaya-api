@@ -1,19 +1,21 @@
 package qbckrt.qayaapi.service;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
+
 import qbckrt.qayaapi.dto.TagInputDTO;
 import qbckrt.qayaapi.dto.TagOutputDTO;
 import qbckrt.qayaapi.entity.Tag;
 import qbckrt.qayaapi.mapper.TagMapper;
 import qbckrt.qayaapi.repository.TagRepository;
 
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class TagService {
 
-    // FIELDS
+    // DEPENDENCIES
     private final TagRepository tagRepository;
     private final TagMapper tagMapper;
 
@@ -27,9 +29,10 @@ public class TagService {
     public TagOutputDTO getTagById(String tagId) {
         UUID tagIdAsUUID = UUID.fromString(tagId);
 
-        return tagRepository.findById(tagIdAsUUID)
-                .map(tagMapper::toDTO)
+        Tag tag = tagRepository.findById(tagIdAsUUID)
                 .orElseThrow(() -> new RuntimeException("Tag not found with id: " + tagId));
+
+        return tagMapper.toDTO(tag);
     }
 
     public List<TagOutputDTO> getAllTags() {
@@ -41,6 +44,7 @@ public class TagService {
     public TagOutputDTO createTag(TagInputDTO tagInputDTO) {
         Tag tagEntity = tagMapper.toEntity(tagInputDTO);
         Tag savedTag = tagRepository.save(tagEntity);
+
         return tagMapper.toDTO(savedTag);
     }
 }
