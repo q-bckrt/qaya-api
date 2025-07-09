@@ -1,17 +1,23 @@
 package qbckrt.qayaapi.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import qbckrt.qayaapi.dto.CurrencyOutputDTO;
 import qbckrt.qayaapi.service.CurrencyService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/currencies")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CurrencyController {
 
-    // FIELDS
+    // DEPENDENCIES
     private final CurrencyService currencyService;
 
     // CONSTRUCTOR
@@ -21,13 +27,11 @@ public class CurrencyController {
 
     // METHODS
     @GetMapping(path = "/{code}", produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
     public CurrencyOutputDTO getCurrencyByCode(@PathVariable("code") String code) {
         return currencyService.getCurrencyByCode(code);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<CurrencyOutputDTO> getCurrencies() {
         return currencyService.getCurrencies();
     }
